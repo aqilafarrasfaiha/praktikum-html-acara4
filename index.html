@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Profil </title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .main-card {
+            max-width: 650px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .header-profil {
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header-profil h1 {
+            margin: 0 0 5px 0;
+            color: #222;
+        }
+
+        .header-profil p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .menu-nav {
+            margin-bottom: 20px;
+        }
+
+        .menu-nav button {
+            padding: 8px 16px;
+            margin-right: 5px;
+            background-color: #e4e6eb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .menu-nav button:hover {
+            background-color: #d8dadf;
+        }
+
+        .halaman {
+            display: none;
+        }
+
+        .aktif {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-hitung {
+            padding: 8px 14px;
+            margin-right: 4px;
+            margin-top: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-hitung:hover {
+            background-color: #0056b3;
+        }
+
+        .box-hasil {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <div class="header-profil">
+            <center>
+                <h1>Selamat Datang </h1>
+                <p>Dibuat oleh: <b>Aqila Farras Faiha</b> | NIM: <b>25/559926/GE/10768</b></p>
+            </center>
+        </div>
+
+        <div class="menu-nav">
+            <button onclick="gantiTab('profil')">Profil</button>
+            <button onclick="gantiTab('kalkulator')">Kalkulator</button>
+            <button onclick="gantiTab('pesan')">Kirim Pesan</button>
+        </div>
+
+        <div id="profil" class="halaman aktif">
+            <h3>Halo semuanya!!!</h3>
+            <p>Di sini ada beberapa fitur seperti <u>kalkulator matematika</u> dan <i> form </i> </p> pesan.</p>
+            
+            <p><b>Fitur di website ini:</b></p>
+            <ul>
+                <li>Kalkulator Matematika (Pangkat & Akar)</li>
+                <li>Form Kirim Pesan</li>            </ul>
+
+            <table border="1">
+                <tr bgcolor="#e4e6eb">
+                    <th>Fitur</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Kalkulator</td>
+                    <td>Aktif</td>
+                </tr>
+                <tr>
+                    <td>Form Pesan</td>
+                    <td>Aktif</td>
+                </tr>
+            </table>
+            <br>
+            <button onclick="sapaan()">Klik di sini</button>
+        </div>
+
+        <div id="kalkulator" class="halaman">
+            <h3>Kalkulator</h3>
+            <div class="form-group">
+                <label>Angka Pertama:</label>
+                <input type="number" id="angka1" placeholder="Masukkan angka">
+            </div>
+            <div class="form-group">
+                <label>Angka Kedua (Abaikan jika Hitung Pangkat / Akar):</label>
+                <input type="number" id="angka2" placeholder="Masukkan angka">
+            </div>
+            
+            <button class="btn-hitung" onclick="hitung('+')">+</button>
+            <button class="btn-hitung" onclick="hitung('-')">-</button>
+            <button class="btn-hitung" onclick="hitung('*')">x</button>
+            <button class="btn-hitung" onclick="hitung('/')">/</button>
+            <button class="btn-hitung" onclick="hitung('pangkat2')">x²</button>
+            <button class="btn-hitung" onclick="hitung('akar')">√x</button>
+
+            <div id="boxHasil" class="box-hasil" style="display: none;">
+                <p id="teksHasil" style="margin: 0; font-weight: bold;"></p>
+            </div>
+        </div>
+
+        <div id="pesan" class="halaman">
+            <h3>Tinggalkan Pesan</h3>
+            <form onsubmit="simpanPesan(event)">
+                <div class="form-group">
+                    <label>Nama:</label>
+                    <input type="text" id="nama" required>
+                </div>
+                <div class="form-group">
+                    <label>Pesan:</label>
+                    <textarea id="isiPesan" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn-hitung">Kirim</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function gantiTab(idHalaman) {
+            var daftarHalaman = document.getElementsByClassName("halaman");
+            for (var i = 0; i < daftarHalaman.length; i++) {
+                daftarHalaman[i].classList.remove("aktif");
+            }
+            document.getElementById(idHalaman).classList.add("aktif");
+        }
+
+        function sapaan() {
+            alert("Terima kasih sudah mampir ");
+        }
+
+        function hitung(operator) {
+            var a = parseFloat(document.getElementById("angka1").value);
+            var b = parseFloat(document.getElementById("angka2").value);
+
+            if (isNaN(a)) {
+                alert("Masukkan angka pertama terlebih dahulu!");
+                return;
+            }
+
+            var hasil = 0;
+
+            if (operator === 'pangkat2') {
+                hasil = Math.pow(a, 2);
+            } else if (operator === 'akar') {
+                if (a < 0) {
+                    alert("Tidak bisa mengakar angka negatif!");
+                    return;
+                }
+                hasil = Math.sqrt(a);
+            } else {
+                if (isNaN(b)) {
+                    alert("Masukkan angka kedua terlebih dahulu!");
+                    return;
+                }
+
+                if (operator === '+') {
+                    hasil = a + b;
+                } else if (operator === '-') {
+                    hasil = a - b;
+                } else if (operator === '*') {
+                    hasil = a * b;
+                } else if (operator === '/') {
+                    if (b === 0) {
+                        alert("Tidak bisa membagi angka dengan nol!");
+                        return;
+                    }
+                    hasil = a / b;
+                }
+            }
+
+            document.getElementById("boxHasil").style.display = "block";
+            document.getElementById("teksHasil").innerText = "Hasil: " + hasil;
+        }
+
+        function simpanPesan(e) {
+            e.preventDefault();
+            var namaUser = document.getElementById("nama").value;
+            alert("Halo " + namaUser + ", pesan kamu sudah terkirim");
+            document.getElementById("nama").value = "";
+            document.getElementById("isiPesan").value = "";
+        }
+    </script>
+</body>
+</html>
