@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Profil </title>
+    <title>Website Profil</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -121,7 +121,7 @@
     <div class="main-card">
         <div class="header-profil">
             <center>
-                <h1>Selamat Datang </h1>
+                <h1>Selamat Datang</h1>
                 <p>Dibuat oleh: <b>Aqila Farras Faiha</b> | NIM: <b>25/559926/GE/10768</b></p>
             </center>
         </div>
@@ -134,12 +134,13 @@
 
         <div id="profil" class="halaman aktif">
             <h3>Halo semuanya!!!</h3>
-            <p>Di sini ada beberapa fitur seperti <u>kalkulator matematika</u> dan <i> form </i> </p> pesan.</p>
+            <p>Di sini ada beberapa fitur seperti <u>kalkulator matematika</u> dan <i>form</i> pesan.</p>
             
             <p><b>Fitur di website ini:</b></p>
             <ul>
-                <li>Kalkulator Matematika (Pangkat & Akar)</li>
-                <li>Form Kirim Pesan</li>            </ul>
+                <li>Kalkulator Matematika Sederhana</li>
+                <li>Form Kirim Pesan</li>
+            </ul>
 
             <table border="1">
                 <tr bgcolor="#e4e6eb">
@@ -166,7 +167,7 @@
                 <input type="number" id="angka1" placeholder="Masukkan angka">
             </div>
             <div class="form-group">
-                <label>Angka Kedua (Abaikan jika Hitung Pangkat / Akar):</label>
+                <label>Angka Kedua:</label>
                 <input type="number" id="angka2" placeholder="Masukkan angka">
             </div>
             
@@ -174,8 +175,6 @@
             <button class="btn-hitung" onclick="hitung('-')">-</button>
             <button class="btn-hitung" onclick="hitung('*')">x</button>
             <button class="btn-hitung" onclick="hitung('/')">/</button>
-            <button class="btn-hitung" onclick="hitung('pangkat2')">x²</button>
-            <button class="btn-hitung" onclick="hitung('akar')">√x</button>
 
             <div id="boxHasil" class="box-hasil" style="display: none;">
                 <p id="teksHasil" style="margin: 0; font-weight: bold;"></p>
@@ -208,47 +207,32 @@
         }
 
         function sapaan() {
-            alert("Terima kasih sudah mampir ");
+            alert("Terima kasih sudah mampir");
         }
 
         function hitung(operator) {
             var a = parseFloat(document.getElementById("angka1").value);
             var b = parseFloat(document.getElementById("angka2").value);
 
-            if (isNaN(a)) {
-                alert("Masukkan angka pertama terlebih dahulu!");
+            if (isNaN(a) || isNaN(b)) {
+                alert("Masukkan kedua angka terlebih dahulu!");
                 return;
             }
 
             var hasil = 0;
 
-            if (operator === 'pangkat2') {
-                hasil = Math.pow(a, 2);
-            } else if (operator === 'akar') {
-                if (a < 0) {
-                    alert("Tidak bisa mengakar angka negatif!");
+            if (operator === '+') {
+                hasil = a + b;
+            } else if (operator === '-') {
+                hasil = a - b;
+            } else if (operator === '*') {
+                hasil = a * b;
+            } else if (operator === '/') {
+                if (b === 0) {
+                    alert("Tidak bisa membagi angka dengan nol!");
                     return;
                 }
-                hasil = Math.sqrt(a);
-            } else {
-                if (isNaN(b)) {
-                    alert("Masukkan angka kedua terlebih dahulu!");
-                    return;
-                }
-
-                if (operator === '+') {
-                    hasil = a + b;
-                } else if (operator === '-') {
-                    hasil = a - b;
-                } else if (operator === '*') {
-                    hasil = a * b;
-                } else if (operator === '/') {
-                    if (b === 0) {
-                        alert("Tidak bisa membagi angka dengan nol!");
-                        return;
-                    }
-                    hasil = a / b;
-                }
+                hasil = a / b;
             }
 
             document.getElementById("boxHasil").style.display = "block";
